@@ -20,3 +20,27 @@ const create_item = () => {
 
 document.querySelectorAll('.drop').forEach(element => {
 });
+
+function create_item(){
+
+  let item =document.createElement('div');
+  item=item.classList.add();
+  item.setAttribute('id','item-order');
+  item.draggable();
+
+  item.addEventListener("dragstart",(event)=>event.dataTransfer.setData('text', event.target));
+  item.addEventListener("dragend",(event)=>event.dataTransfer.clearData());
+
+  let input =document.createElement('input');
+
+  item.appendChild(input);
+
+  save_btn =document.createElement('button').innerHTML='Save';
+
+  save_btn.addEventListener('click', ()=>{
+    if(input.value.length==0){
+      
+    }
+  })
+}
+
