@@ -17,28 +17,44 @@ add_btn.addEventListener('click', () => {
 
 const create_item = () => {
   let item =document.createElement('div');
-  item.classList.add("item");
+  item.classList.add('item');
   item.id='item-'+order;
-  item.draggable();
+  item.draggable=true;
 
-  item.addEventListener("dragstart",(event)=>event.dataTransfer.setData('text', event.target));
+  item.addEventListener("dragstart",(event)=>event.dataTransfer.setData('text', event.target.id));
   item.addEventListener("dragend",(event)=>event.dataTransfer.clearData());
 
   let input =document.createElement('input');
-
   item.appendChild(input);
 
-  save_btn =document.createElement('button').innerHTML='Save';
+  let save_btn =document.createElement('button')
+  save_btn.innerHTML='Save';
 
   save_btn.addEventListener('click', ()=>{
-    if(input.value.length==0){
-      
+    error.innerHTML='';
+    if(input.value !== ''){
+      order+=1;
+      item.innerHTML=input.value;
+      adding=false;
     }
-  })
+    else {
+      error.innerHTML=message;
+    }
+  });
+item.appendChild(save_btn);
 
+return item;
 };
 
 document.querySelectorAll('.drop').forEach(element => {
+  element.addEventListener('drop', (event)=>{
+    event.preventDefault();
+  const id=  event.dataTransfer.getData('text');
+  event.target.appendChild(document.getElementById(id))
+  });
+
+  element.addEventListener('dragover', (event)=>event.preventDefault());
 });
+
 
 
