@@ -16,16 +16,9 @@ add_btn.addEventListener('click', () => {
 });
 
 const create_item = () => {
-};
-
-document.querySelectorAll('.drop').forEach(element => {
-});
-
-function create_item(){
-
   let item =document.createElement('div');
-  item=item.classList.add();
-  item.setAttribute('id','item-order');
+  item.classList.add("item");
+  item.id='item-'+order;
   item.draggable();
 
   item.addEventListener("dragstart",(event)=>event.dataTransfer.setData('text', event.target));
@@ -42,5 +35,10 @@ function create_item(){
       
     }
   })
-}
+
+};
+
+document.querySelectorAll('.drop').forEach(element => {
+});
+
 
